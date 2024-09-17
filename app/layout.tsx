@@ -9,8 +9,31 @@ const unlock = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "shotbykian",
+  metadataBase: new URL("https://shotbykian.com"),
+  title: {
+    default: "shotbykian",
+    template: `%s | ${"shotbykian"}`,
+  },
   description: "Portfolio by Kian Malakooti",
+  openGraph: {
+    title: "shotbykian",
+    description: "Portfolio by Kian Malakooti",
+    url: "https://shotbykian.com",
+    siteName: "shotbykian",
+    locale: "en_US",
+    type: "website",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
