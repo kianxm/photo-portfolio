@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${unlock.variable} antialiased bg-zinc-900`}>
+      <body className={`${unlock.variable} antialiased bg-gray-200`}>
         {children}
       </body>
     </html>
