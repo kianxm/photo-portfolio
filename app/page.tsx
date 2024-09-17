@@ -3,7 +3,7 @@
 import React from "react";
 import Preloader from "@/components/Preloader";
 import Hero from "@/components/Hero";
-import ImageScrollGallery from "@/components/ImageScrollGallery";
+// import ImageScrollGallery from "@/components/ImageScrollGallery";
 import { ReactLenis } from "lenis/react";
 import GallerySwitch from "@/components/GallerySwitch";
 import { usePreloader } from "@/hooks/usePreloader";
