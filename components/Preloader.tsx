@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { gsap } from "gsap";
 
-// CounterLoader component
 const CounterLoader: React.FC = () => {
   const [percentage, setPercentage] = useState(0);
 

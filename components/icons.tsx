@@ -69,7 +69,7 @@ export const Icons = {
       <path d="M20 12l-8 8l-4 -4" />
     </svg>
   ),
-  Instagram: (props: IconProps) => (
+  Instagram: () => (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"

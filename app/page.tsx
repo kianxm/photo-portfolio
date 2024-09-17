@@ -8,13 +8,13 @@ import { ReactLenis } from "lenis/react";
 import GallerySwitch from "@/components/GallerySwitch";
 
 const Home: React.FC = () => {
-  const [loading, setLoading] = useState(false);
-  const [preloaderComplete, setPreloaderComplete] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [preloaderComplete, setPreloaderComplete] = useState(false);
 
   const handlePreloaderComplete = () => {
     setLoading(false);
     setTimeout(() => {
-      setPreloaderComplete(true); // Allow animations to load after the preloader finishes
+      setPreloaderComplete(true);
     }, 500); // Add a small delay for smoother transition
   };
 

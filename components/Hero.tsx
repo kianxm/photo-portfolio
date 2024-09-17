@@ -6,23 +6,23 @@ import { SOCIALS } from "@/utils/constants";
 import Link from "next/link";
 
 export default function Hero() {
-  // useEffect(() => {
-  //   const tl = gsap.timeline({
-  //     defaults: { ease: "power4.inOut" },
-  //   });
+  useEffect(() => {
+    const tl = gsap.timeline({
+      defaults: { ease: "power4.inOut" },
+    });
 
-  //   tl.fromTo(
-  //     "#container",
-  //     { left: "100%", scale: 0.5 },
-  //     {
-  //       left: "50%",
-  //       scale: 0.5,
-  //       transform: "translateX(-50%)",
-  //       duration: 1.5,
-  //       delay: 4,
-  //     }
-  //   ).to("#container", { scale: 1, duration: 1, delay: 2 });
-  // }, []);
+    tl.fromTo(
+      "#container",
+      { left: "100%", scale: 0.5 },
+      {
+        left: "50%",
+        scale: 0.5,
+        transform: "translateX(-50%)",
+        duration: 1.5,
+        delay: 4,
+      }
+    ).to("#container", { scale: 1, duration: 1, delay: 2 });
+  }, []);
 
   const titleBoxStyle = "text-3xl font-bold text-black bg-gray-300";
 

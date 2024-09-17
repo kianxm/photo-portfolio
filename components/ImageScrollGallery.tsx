@@ -14,6 +14,7 @@ export default function ImageScrollGallery() {
     const rightRotationValues = [30, 20, 35];
     const yValues = [100, -150, -400];
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     gsap.utils.toArray(".row").forEach((row: any, index) => {
       const cardLeft = row.querySelector(".card-left") as HTMLElement;
       const cardRight = row.querySelector(".card-right") as HTMLElement;
@@ -131,14 +132,14 @@ export default function ImageScrollGallery() {
           <div className="card-left relative w-1/2 h-[240px] sm:w-[40%] sm:h-[360px] rounded-lg overflow-hidden transform">
             <img
               src={`/AFRICA/AFRICA-${2 * i - 1}.jpg`}
-              alt=""
+              alt={`/AFRICA/AFRICA-${2 * i - 1}`}
               className="w-full h-full object-cover"
             />
           </div>
           <div className="card-right relative w-1/2 h-[240px] sm:w-[40%] sm:h-[360px] rounded-lg overflow-hidden transform">
             <img
               src={`/AFRICA/AFRICA-${2 * i}.jpg`}
-              alt=""
+              alt={`/AFRICA/AFRICA-${2 * i}`}
               className="w-full h-full object-cover"
             />
           </div>
