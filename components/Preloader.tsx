@@ -25,9 +25,12 @@ const CounterLoader: React.FC = () => {
 };
 
 const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
+  const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
     const tl = gsap.timeline({
       defaults: { ease: "power4.inOut" },
+      onStart: () => setIsVisible(true),
       onComplete: onComplete,
     });
 
@@ -64,7 +67,9 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
         >
           <div
             id="circle-outer"
-            className="absolute top-0 left-0 w-full h-full bg-none rounded-full"
+            className={`absolute top-0 left-0 w-full h-full bg-none rounded-full ${
+              !isVisible ? "hidden" : ""
+            }`}
             style={{ border: "1px solid var(--circle-outline)" }}
           ></div>
 

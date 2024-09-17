@@ -1,14 +1,17 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { cn } from "@/lib/utils";
 import { SOCIALS } from "@/utils/constants";
 import Link from "next/link";
 
 export default function Hero() {
+  const [isVisible, setIsVisible] = useState(false);
+
   useEffect(() => {
     const tl = gsap.timeline({
       defaults: { ease: "power4.inOut" },
+      onStart: () => setIsVisible(true),
     });
 
     tl.fromTo(
@@ -30,7 +33,12 @@ export default function Hero() {
     "bg-gray-300 border-2 border-zinc-600 rounded-xl flex flex-col items-center justify-center text-black h-full overflow-hidden relative";
 
   return (
-    <div id="container" className="relative w-screen h-screen p-2 sm:p-4">
+    <div
+      id="container"
+      className={`relative w-screen h-screen p-2 sm:p-4 ${
+        !isVisible ? "hidden" : ""
+      }`}
+    >
       <div className="grid grid-cols-6 lg:grid-cols-12 grid-rows-12 justify-center items-center gap-2 lg:gap-3 h-full">
         <div
           className={cn(
