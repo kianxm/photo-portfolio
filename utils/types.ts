@@ -1,43 +1,63 @@
-export interface ImageScrollGalleryProps {
+export interface AlbumProps {
+  id: string;
+  albumName: string;
   logoSrc: string;
   description: string;
-  images: { left: string; right: string }[];
   buttonText: string;
+  directory: string;
+  fileName: string;
+  count: number;
 }
 
-// Define the data for multiple image galleries
-export const imageGalleries: ImageScrollGalleryProps[] = [
+export const imageGalleries: AlbumProps[] = [
   {
-    logoSrc: "/me.jpg",
-    description:
-      "Visited Africa in both 2019 and 2024, discovering new cultures and ideas.",
+    id: "africa",
+    albumName: "Africa",
+    logoSrc: "/AFRICA/AFRICA-1.jpg",
+    description: "View Africa photos",
     buttonText: "Explore",
-    images: [
-      { left: "/AFRICA/AFRICA-1.jpg", right: "/AFRICA/AFRICA-2.jpg" },
-      { left: "/AFRICA/AFRICA-3.jpg", right: "/AFRICA/AFRICA-4.jpg" },
-      { left: "/AFRICA/AFRICA-5.jpg", right: "/AFRICA/AFRICA-6.jpg" },
-    ],
+    directory: "/AFRICA",
+    fileName: "AFRICA",
+    count: 71,
   },
   {
-    logoSrc: "/me.jpg",
-    description:
-      "Explored Europe's iconic landmarks and vibrant cultures in 2021.",
+    id: "las-vegas",
+    albumName: "Las Vegas",
+    logoSrc: "/VEGAS/VEGAS-1.jpg",
+    description: "View Las Vegas photos",
     buttonText: "Discover",
-    images: [
-      { left: "/VEGAS/VEGAS-1.jpg", right: "/VEGAS/VEGAS-2.jpg" },
-      { left: "/VEGAS/VEGAS-3.jpg", right: "/VEGAS/VEGAS-4.jpg" },
-      { left: "/VEGAS/VEGAS-5.jpg", right: "/VEGAS/VEGAS-6.jpg" },
-    ],
+    directory: "/VEGAS",
+    fileName: "VEGAS",
+    count: 15,
   },
   {
-    logoSrc: "/asia.jpg",
-    description:
-      "Journeyed through Asia, embracing its rich history and landscapes in 2022.",
+    id: "graduation",
+    albumName: "Graduation",
+    logoSrc: "/GRAD/GRAD-19.jpg",
+    description: "View graduation photos",
     buttonText: "View More",
-    images: [
-      { left: "/ASIA/ASIA-1.jpg", right: "/ASIA/ASIA-2.jpg" },
-      { left: "/ASIA/ASIA-3.jpg", right: "/ASIA/ASIA-4.jpg" },
-      { left: "/ASIA/ASIA-5.jpg", right: "/ASIA/ASIA-6.jpg" },
-    ],
+    directory: "/GRAD",
+    fileName: "GRAD",
+    count: 20,
+  },
+  {
+    id: "commercial",
+    albumName: "Commercial",
+    logoSrc: "/GIGS/CROOK-12.jpg",
+    description: "View commercial photos",
+    buttonText: "Discover",
+    directory: "/GIGS",
+    fileName: "CROOK",
+    count: 28,
+  },
+  {
+    id: "concerts",
+    albumName: "Concerts",
+    logoSrc: "/TYO/TYO-1.jpg",
+    description: "View concert photos",
+    buttonText: "Explore",
+    directory: "/TYO",
+    fileName: "TYO",
+    count: 6,
   },
 ];
