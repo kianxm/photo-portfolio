@@ -4,6 +4,14 @@ import { gsap } from "gsap";
 import { cn } from "@/lib/utils";
 import { SOCIALS } from "@/utils/constants";
 import Link from "next/link";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./ui/tooltip";
+import { Button } from "./ui/button";
+import { Icons } from "./icons";
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
@@ -128,13 +136,24 @@ export default function Hero() {
           )}
         >
           <div className="flex gap-2 justify-center h-full items-center">
-            {SOCIALS.map((social, index) => (
+            {SOCIALS.slice(0, 2).map((social, index) => (
               <div key={index} className="p-2">
                 <Link href={social.href}>
                   <social.logo />
                 </Link>
               </div>
             ))}
+
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger className="pl-2">
+                  <Icons.Email />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p className="font-sans">{SOCIALS[2].href}</p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         </div>
       </div>
