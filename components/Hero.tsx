@@ -10,7 +10,6 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "./ui/tooltip";
-import { Button } from "./ui/button";
 import { Icons } from "./icons";
 
 export default function Hero() {
@@ -24,15 +23,15 @@ export default function Hero() {
 
     tl.fromTo(
       "#container",
-      { left: "100%", scale: 0.5 },
+      { left: "300%", scale: 0.5 },
       {
         left: "50%",
         scale: 0.5,
         transform: "translateX(-50%)",
-        duration: 1.5,
-        delay: 4,
+        duration: 3,
+        delay: 3,
       }
-    ).to("#container", { scale: 1, duration: 1, delay: 2 });
+    ).to("#container", { scale: 1, duration: 1, delay: 1.5 });
   }, []);
 
   const titleBoxStyle = "text-3xl font-bold text-black bg-gray-300";
