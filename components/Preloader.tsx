@@ -35,18 +35,19 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
     });
 
     tl.fromTo("#circles", { top: "-50%" }, { top: "50%", duration: 2 })
+      .to("#circle-inner", { rotation: 360, scale: 0.5, duration: 1 })
       .to("#circle-inner-rotator", { scale: 1, duration: 1 }, "-=0.5")
-      .to("#circles", { rotation: 360, duration: 1.5 })
+      .to("#circles", { rotation: 360, duration: 1.4 })
       .to(
         "#block",
         { display: "block", height: "200px", duration: 0.75 },
         "-=0.5"
       )
-      .to("#block", { width: "800px", duration: 0.75 })
-      .to("#block", { width: "0px", duration: 0.75, delay: 0.75 })
-      .to("#block", { height: "0px", duration: 0.75 })
+      .to("#block", { width: "800px", duration: 0.75 }, "-=0.2")
+      .to("#block", { width: "0px", duration: 0.75, delay: 1 })
+      .to("#block", { height: "0px", duration: 0.5 }, "-=0.25")
       .to("#circles", { rotation: 0, duration: 0.75 })
-      .to("#loader", { scale: 0, duration: 1 }, "-=0.5");
+      .to("#loader", { scale: 0, duration: 1 }, "-=0.4");
   }, [onComplete]);
 
   return (
@@ -75,7 +76,10 @@ const Preloader: React.FC<{ onComplete: () => void }> = ({ onComplete }) => {
 
           <div
             id="circle-inner"
-            className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px]"
+            className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] ${
+              !isVisible ? "hidden" : ""
+            }`}
+            style={{ border: "1px solid var(--circle-outline)" }}
           ></div>
 
           <div

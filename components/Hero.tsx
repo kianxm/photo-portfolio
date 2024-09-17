@@ -4,13 +4,7 @@ import { gsap } from "gsap";
 import { cn } from "@/lib/utils";
 import { SOCIALS } from "@/utils/constants";
 import Link from "next/link";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "./ui/tooltip";
-import { Icons } from "./icons";
+import Image from "next/image";
 
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
@@ -29,15 +23,13 @@ export default function Hero() {
         scale: 0.5,
         transform: "translateX(-50%)",
         duration: 3,
-        delay: 3,
+        delay: 3.5,
       }
-    ).to("#container", { scale: 1, duration: 1, delay: 1.5 });
+    ).to("#container", { scale: 1, duration: 2, delay: 1.25 });
   }, []);
 
-  const titleBoxStyle = "text-3xl font-bold text-black bg-gray-200";
-
   const boxStyle =
-    "bg-gray-200 border-2 border-zinc-600 rounded-xl flex flex-col items-center justify-center text-black h-full overflow-hidden relative";
+    "bg-gray-200 rounded-xl flex flex-col items-center justify-center text-black h-full overflow-hidden relative shadow-md";
 
   return (
     <div
@@ -47,69 +39,75 @@ export default function Hero() {
       }`}
     >
       <div className="grid grid-cols-6 lg:grid-cols-12 grid-rows-12 justify-center items-center gap-2 lg:gap-3 h-full">
-        <div
-          className={cn(
-            "col-span-6 lg:col-span-12 row-span-1",
-            boxStyle,
-            titleBoxStyle
-          )}
-        >
-          Kian Malakooti
-        </div>
-
         {/* 1 */}
         <div
           className={cn(
-            "col-span-6 row-span-4 md:col-span-4 md:row-span-5 lg:col-span-5 lg:row-span-7",
-            boxStyle
+            boxStyle,
+            "hidden md:block col-span-6 row-span-4 md:col-span-6 md:row-span-6 lg:col-span-5 lg:row-span-11"
           )}
         >
-          <img
+          <Image
             src="/VEGAS/VEGAS-3.jpg"
-            className="absolute inset-0 w-full h-full object-cover"
             alt="Descriptive Alt Text"
+            quality={50}
+            fill
+            className="absolute inset-0 object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority={true}
           />
         </div>
 
         {/* 2 */}
         <div
           className={cn(
-            "col-span-6 row-span-4 md:col-span-2 md:row-span-5 lg:col-span-3 lg:row-span-7",
-            boxStyle
+            boxStyle,
+            "hidden md:block col-span-6 row-span-4 md:col-span-2 md:row-span-5 lg:col-span-3 lg:row-span-6 lg:col-start-6 lg:row-start-1"
           )}
         >
-          <img
-            src="me.jpg"
-            className="absolute inset-0 w-full h-full object-cover"
+          <Image
+            src="/me-2.jpg"
             alt="Descriptive Alt Text"
+            quality={50}
+            fill
+            className="absolute inset-0 object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority={true}
           />
         </div>
 
         {/* 3 */}
         <div
           className={cn(
-            "col-span-3 row-span-4 md:col-span-2 md:row-span-5 lg:col-span-4 lg:row-span-10",
-            boxStyle
+            boxStyle,
+            "col-span-6 row-span-3 row-start-1 md:col-span-2 md:row-span-5 lg:col-span-4 lg:row-span-3 lg:col-start-9 lg:row-start-1 shadow-sm"
           )}
         >
-          <img
-            src="/AFRICA/AFRICA-68.jpg"
-            className="absolute inset-0 w-full h-full object-cover"
+          <Image
+            src="/AFRICA/AFRICA-18.jpg"
             alt="Descriptive Alt Text"
+            quality={50}
+            fill
+            className="absolute inset-0 object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority={true}
           />
         </div>
 
         {/* 4 */}
         <div
           className={cn(
-            boxStyle,
-            "col-span-3 row-span-4 md:col-span-4 md:row-span-5 lg:col-span-4 lg:row-span-5"
+            "col-span-6 row-span-8 md:col-span-2 md:row-span-5 lg:col-span-4 lg:row-span-8 lg:col-start-9 lg:row-start-4",
+            boxStyle
           )}
         >
-          <img
-            src="/AFRICA/AFRICA-13.jpg"
-            className="absolute inset-0 w-full h-full object-cover"
+          <Image
+            src="/AFRICA/AFRICA-68.jpg"
             alt="Descriptive Alt Text"
+            quality={50}
+            fill
+            className="absolute inset-0 object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority={true}
           />
         </div>
 
@@ -117,43 +115,39 @@ export default function Hero() {
         <div
           className={cn(
             boxStyle,
-            "hidden lg:block md:col-span-4 md:row-span-5 lg:col-span-4 lg:row-span-5"
+            "col-span-6 row-span-1 md:col-span-6 lg:col-span-12 lg:col-start-1 items-start pl-4 pr-2 text-2xl shadow-none"
           )}
         >
-          <img
-            src="/AFRICA/AFRICA-10.jpg"
-            className="absolute inset-0 w-full h-full object-cover"
-            alt="Descriptive Alt Text"
-          />
+          <div className="flex w-full justify-between items-center">
+            <span>Kian Malakooti</span>
+            <div className="flex gap-2">
+              {SOCIALS.slice(0, 2)
+                .reverse()
+                .map((social, index) => (
+                  <Link href={social.href} key={index} className="p-2">
+                    <social.icon />
+                  </Link>
+                ))}
+            </div>
+          </div>
         </div>
 
-        {/* 6 socials */}
+        {/* 6 */}
         <div
           className={cn(
             boxStyle,
-            "hidden md:block col-span-6 lg:col-span-4 row-span-2"
+            "hidden lg:block md:col-span-4 md:row-span-5 lg:col-span-3 lg:row-span-5 lg:row-start-7 lg:col-start-6"
           )}
         >
-          <div className="flex gap-2 justify-center h-full items-center">
-            {SOCIALS.slice(0, 2).map((social, index) => (
-              <div key={index} className="p-2">
-                <Link href={social.href}>
-                  <social.logo />
-                </Link>
-              </div>
-            ))}
-
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger className="pl-2">
-                  <Icons.Email />
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p className="font-sans">{SOCIALS[2].href}</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
-          </div>
+          <Image
+            src="/AFRICA/AFRICA-10.jpg"
+            alt="Descriptive Alt Text"
+            quality={50}
+            fill
+            className="absolute inset-0 object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            priority={true}
+          />
         </div>
       </div>
     </div>

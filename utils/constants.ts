@@ -4,16 +4,18 @@ export const SOCIALS = [
   {
     name: "LinkedIn",
     href: "https://www.linkedin.com/in/kianmalakooti/",
-    logo: Icons.Linkedin,
+    icon: Icons.Linkedin,
   },
   {
     name: "Instagram",
     href: "https://www.instagram.com/shotbykian/",
-    logo: Icons.Instagram,
+    icon: Icons.Instagram,
+    // icon: "/instagram.svg",
   },
   {
     name: "Email",
     href: "kianjmalakooti@gmail.com",
-    logo: Icons.Email,
+    icon: Icons.Linkedin,
+    // icon: "/email.svg",
   },
-] as const;
+];

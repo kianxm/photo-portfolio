@@ -169,7 +169,7 @@ export default function ImageScrollGallery() {
           <div className="line relative my-2.5 mx-0 w-[300px] h-auto clip-custom">
             <p
               id="text"
-              className="relative text-[24px] text-white text-center"
+              className="relative text-[24px] text-black text-center"
             >
               Visited Africa in both 2019 and 2024, discovering new cultures and
               ideas.
@@ -179,7 +179,7 @@ export default function ImageScrollGallery() {
             id="button"
             className="relative px-4 py-2 bg-white border-2 border-white rounded-full bg-none outline-none text-black"
           >
-            test
+            Explore
           </button>
         </div>
       </div>

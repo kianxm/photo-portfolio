@@ -8,7 +8,7 @@ export function usePreloader() {
     setLoading(false);
     setTimeout(() => {
       setPreloaderComplete(true);
-    }, 500); // Add a small delay for smoother transition
+    }, 1000); // Add a small delay for smoother transition
   };
 
   return {
