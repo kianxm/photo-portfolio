@@ -34,10 +34,10 @@ export default function Hero() {
     ).to("#container", { scale: 1, duration: 1, delay: 1.5 });
   }, []);
 
-  const titleBoxStyle = "text-3xl font-bold text-black bg-gray-300";
+  const titleBoxStyle = "text-3xl font-bold text-black bg-gray-200";
 
   const boxStyle =
-    "bg-gray-300 border-2 border-zinc-600 rounded-xl flex flex-col items-center justify-center text-black h-full overflow-hidden relative";
+    "bg-gray-200 border-2 border-zinc-600 rounded-xl flex flex-col items-center justify-center text-black h-full overflow-hidden relative";
 
   return (
     <div
