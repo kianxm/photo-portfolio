@@ -13,7 +13,7 @@ export const imageGalleries: AlbumProps[] = [
   {
     id: "africa",
     albumName: "Africa",
-    logoSrc: "/AFRICA/AFRICA-1.jpg",
+    logoSrc: "/AFRICA/AFRICA-3.jpg",
     description: "View Africa photos",
     buttonText: "Explore",
     directory: "/AFRICA",
@@ -23,7 +23,7 @@ export const imageGalleries: AlbumProps[] = [
   {
     id: "las-vegas",
     albumName: "Las Vegas",
-    logoSrc: "/VEGAS/VEGAS-1.jpg",
+    logoSrc: "/VEGAS/VEGAS-4.jpg",
     description: "View Las Vegas photos",
     buttonText: "Discover",
     directory: "/VEGAS",

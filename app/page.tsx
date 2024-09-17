@@ -19,7 +19,7 @@ const Home: React.FC = () => {
       {!loading && preloaderComplete && (
         <>
           <GallerySwitch />
-          <ImageScrollGallery />
+          {/* <ImageScrollGallery /> */}
         </>
       )}
     </ReactLenis>
