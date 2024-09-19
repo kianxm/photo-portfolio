@@ -1,25 +1,36 @@
 "use client";
 
-import React from "react";
-import Preloader from "@/components/Preloader";
-import Hero from "@/components/Hero";
-// import ImageScrollGallery from "@/components/ImageScrollGallery";
+import React, { useEffect, useState } from "react";
 import { ReactLenis } from "lenis/react";
 import GallerySwitch from "@/components/GallerySwitch";
-import { usePreloader } from "@/hooks/usePreloader";
+import ZoomParallax from "@/components/ZoomParallax";
+import Footer from "@/components/Footer";
+import Preloader from "@/components/Preloader";
+import { AnimatePresence } from "framer-motion";
 
 const Home: React.FC = () => {
-  const { loading, preloaderComplete, handlePreloaderComplete } =
-    usePreloader();
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      setTimeout(() => {
+        setIsLoading(false);
+        document.body.style.cursor = "default";
+        window.scrollTo(0, 0);
+      }, 2000);
+    })();
+  }, []);
 
   return (
     <ReactLenis root>
-      {loading && <Preloader onComplete={handlePreloaderComplete} />}
-      <Hero />
-      {!loading && preloaderComplete && (
+      <AnimatePresence mode="wait">
+        {isLoading && <Preloader />}
+      </AnimatePresence>
+      {!isLoading && (
         <>
+          <ZoomParallax />
           <GallerySwitch />
-          {/* <ImageScrollGallery /> */}
+          <Footer />
         </>
       )}
     </ReactLenis>

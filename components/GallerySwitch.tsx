@@ -9,7 +9,10 @@ export default function Page() {
   };
 
   return (
-    <div className="my-24 flex-1 flex justify-center items-center p-4 md:p-12">
+    <div
+      id="albums"
+      className="mt-14 flex-1 flex justify-center items-center p-4 md:p-12 h-screen"
+    >
       <div className="min-h-full w-full max-w-6xl space-y-4">
         <span className="text-6xl text-black">Albums</span>
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">

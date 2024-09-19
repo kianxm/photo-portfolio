@@ -7,26 +7,26 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function Hero() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
 
-  useEffect(() => {
-    const tl = gsap.timeline({
-      defaults: { ease: "power4.inOut" },
-      onStart: () => setIsVisible(true),
-    });
+  // useEffect(() => {
+  //   const tl = gsap.timeline({
+  //     defaults: { ease: "power4.inOut" },
+  //     onStart: () => setIsVisible(true),
+  //   });
 
-    tl.fromTo(
-      "#container",
-      { left: "300%", scale: 0.5 },
-      {
-        left: "50%",
-        scale: 0.5,
-        transform: "translateX(-50%)",
-        duration: 3,
-        delay: 3.5,
-      }
-    ).to("#container", { scale: 1, duration: 2, delay: 1.25 });
-  }, []);
+  //   tl.fromTo(
+  //     "#container",
+  //     { left: "300%", scale: 0.5 },
+  //     {
+  //       left: "50%",
+  //       scale: 0.5,
+  //       transform: "translateX(-50%)",
+  //       duration: 3,
+  //       delay: 3.5,
+  //     }
+  //   ).to("#container", { scale: 1, duration: 2, delay: 1.25 });
+  // }, []);
 
   const boxStyle =
     "bg-gray-200 rounded-xl flex flex-col items-center justify-center text-black h-full overflow-hidden relative shadow-md";
