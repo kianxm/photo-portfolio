@@ -80,7 +80,7 @@ export default function Index() {
           <motion.div
             key={index}
             style={{ scale }}
-            className="absolute top-0 flex h-full w-full items-center justify-center"
+            className="absolute top-0 flex h-full w-full items-center justify-center "
           >
             <div className={`relative ${getImageContainerClasses(index)}`}>
               <Image
