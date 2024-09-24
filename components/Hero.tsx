@@ -1,13 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
-import { gsap } from "gsap";
+import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { SOCIALS } from "@/utils/constants";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Hero() {
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible] = useState(true);
 
   // useEffect(() => {
   //   const tl = gsap.timeline({
