@@ -27,11 +27,11 @@ const Home: React.FC = () => {
         {isLoading && <Preloader />}
       </AnimatePresence>
       {!isLoading && (
-        <>
+        <div className="flex flex-col">
           <ZoomParallax />
           <GallerySwitch />
           <Footer />
-        </>
+        </div>
       )}
     </ReactLenis>
   );

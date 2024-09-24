@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <div
       id="albums"
-      className="mt-14 flex-1 flex justify-center items-center p-4 md:p-12 h-screen"
+      className="my-14 flex-1 flex justify-center items-center p-4 md:p-12 h-screen"
     >
       <div className="min-h-full w-full max-w-6xl space-y-4">
         <span className="text-6xl text-black">Albums</span>

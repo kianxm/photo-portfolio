@@ -2,16 +2,12 @@ import React from "react";
 
 const navLinks = [
   {
-    title: "Home",
+    title: "Back to top",
     href: "/",
   },
   {
     title: "Albums",
     href: "#albums",
-  },
-  {
-    title: "Contact Me",
-    href: "#",
   },
 ];
 
@@ -45,7 +41,7 @@ export default function Footer() {
           <div className="bg-[#505050] py-8 px-12 h-full w-full flex flex-col justify-between">
             <div className="flex shrink-0 gap-20">
               <div className="flex flex-col gap-2">
-                <h3 className="mb-2 uppercase text-[#ffffff80]">About</h3>
+                <h3 className="mb-2 uppercase text-[#ffffff80]">Home</h3>
                 {navLinks.map((link) => (
                   <a key={link.title} href={link.href}>
                     {link.title}
@@ -55,7 +51,7 @@ export default function Footer() {
               <div className="flex flex-col gap-2">
                 <h3 className="mb-2 uppercase text-[#ffffff80]">My Links</h3>
                 {websiteLinks.map((link) => (
-                  <a key={link.title} href={link.href}>
+                  <a key={link.title} href={link.href} target="_blank">
                     {link.title}
                   </a>
                 ))}
