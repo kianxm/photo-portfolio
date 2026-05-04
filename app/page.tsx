@@ -9,7 +9,7 @@ const HERO_POOL: Array<{ albumId: string; src: string }> = [
   { albumId: "africa", src: "/AFRICA/AFRICA-3.jpg" },
   { albumId: "africa", src: "/AFRICA/AFRICA-18.jpg" },
   { albumId: "africa", src: "/AFRICA/AFRICA-50.jpg" },
-  { albumId: "africa", src: "/AFRICA/AFRICA-68.jpg" },
+  { albumId: "africa", src: "/AFRICA/AFRICA-69.jpg" },
   { albumId: "las-vegas", src: "/VEGAS/VEGAS-13.jpg" },
   { albumId: "commercial", src: "/GIGS/CROOK-12.jpg" },
 ];
@@ -21,7 +21,7 @@ function dayIndex(): number {
 
 function pickHero(): Photo {
   const candidates = HERO_POOL.map((c) => findPhoto(c.albumId, c.src)).filter(
-    (p): p is Photo => Boolean(p)
+    (p): p is Photo => Boolean(p),
   );
   if (candidates.length === 0) return albums[0].photos[0];
   return candidates[dayIndex() % candidates.length];
