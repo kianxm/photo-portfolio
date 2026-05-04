@@ -1,154 +1,101 @@
 "use client";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { SOCIALS } from "@/utils/constants";
-import Link from "next/link";
+
+import { m, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import { useRef } from "react";
+import type { Photo } from "@/lib/albums";
 
-export default function Hero() {
-  const [isVisible] = useState(true);
+type Props = {
+  hero: Photo;
+};
 
-  // useEffect(() => {
-  //   const tl = gsap.timeline({
-  //     defaults: { ease: "power4.inOut" },
-  //     onStart: () => setIsVisible(true),
-  //   });
+export default function Hero({ hero }: Props) {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
 
-  //   tl.fromTo(
-  //     "#container",
-  //     { left: "300%", scale: 0.5 },
-  //     {
-  //       left: "50%",
-  //       scale: 0.5,
-  //       transform: "translateX(-50%)",
-  //       duration: 3,
-  //       delay: 3.5,
-  //     }
-  //   ).to("#container", { scale: 1, duration: 2, delay: 1.25 });
-  // }, []);
-
-  const boxStyle =
-    "bg-gray-200 rounded-xl flex flex-col items-center justify-center text-black h-full overflow-hidden relative shadow-md";
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
 
   return (
-    <div
-      id="container"
-      className={`relative w-screen h-screen p-2 sm:p-4 ${
-        !isVisible ? "hidden" : ""
-      }`}
+    <section
+      ref={ref}
+      className="relative h-[100svh] w-full overflow-hidden bg-ink"
     >
-      <div className="grid grid-cols-6 lg:grid-cols-12 grid-rows-12 justify-center items-center gap-2 lg:gap-3 h-full">
-        {/* 1 */}
-        <div
-          className={cn(
-            boxStyle,
-            "hidden md:block col-span-6 row-span-4 md:col-span-6 md:row-span-6 lg:col-span-5 lg:row-span-11"
-          )}
-        >
-          <Image
-            src="/VEGAS/VEGAS-3.jpg"
-            alt="Descriptive Alt Text"
-            quality={50}
-            fill
-            className="absolute inset-0 object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            priority={true}
-          />
+      <m.div style={{ y, scale }} className="absolute inset-0">
+        <Image
+          src={hero.src}
+          alt="featured photograph"
+          fill
+          priority
+          quality={85}
+          sizes="100vw"
+          placeholder="blur"
+          blurDataURL={hero.blurDataURL}
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/10 to-ink" />
+      </m.div>
+
+      <m.div
+        style={{ opacity }}
+        className="relative z-10 flex h-full flex-col justify-between px-6 py-8 md:px-10 md:py-10"
+      >
+        <header className="flex items-center justify-between text-xs uppercase tracking-[0.25em] text-bone/70">
+          <span>shotbykian</span>
+          <nav className="flex gap-4 md:gap-6">
+            <a href="#work" className="underline-reveal">Work</a>
+            <a href="#about" className="underline-reveal">About</a>
+            <a
+              href="https://www.instagram.com/shotbykian"
+              target="_blank"
+              rel="noreferrer"
+              className="hidden sm:inline underline-reveal"
+            >
+              Instagram
+            </a>
+          </nav>
+        </header>
+
+        <div className="max-w-5xl">
+          <m.h1
+            initial={{ y: 60, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+            className="font-display text-[clamp(3rem,11vw,11rem)] leading-[0.88] tracking-tight"
+          >
+            Kian
+            <br />
+            <span className="italic text-bone/85">Malakooti</span>
+          </m.h1>
+
+          <m.p
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.55 }}
+            className="mt-6 max-w-md text-balance text-sm md:text-base text-bone/70"
+          >
+            Photographs from places I&apos;ve been and people I&apos;ve met —
+            documentary, commercial, and the quiet in-between.
+          </m.p>
         </div>
 
-        {/* 2 */}
-        <div
-          className={cn(
-            boxStyle,
-            "hidden md:block col-span-6 row-span-4 md:col-span-2 md:row-span-5 lg:col-span-3 lg:row-span-6 lg:col-start-6 lg:row-start-1"
-          )}
+        <m.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.9 }}
+          className="flex items-center justify-between text-xs uppercase tracking-[0.25em] text-bone/60"
         >
-          <Image
-            src="/me-2.jpg"
-            alt="Descriptive Alt Text"
-            quality={50}
-            fill
-            className="absolute inset-0 object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            priority={true}
-          />
-        </div>
-
-        {/* 3 */}
-        <div
-          className={cn(
-            boxStyle,
-            "col-span-6 row-span-3 row-start-1 md:col-span-2 md:row-span-5 lg:col-span-4 lg:row-span-3 lg:col-start-9 lg:row-start-1 shadow-sm"
-          )}
-        >
-          <Image
-            src="/AFRICA/AFRICA-18.jpg"
-            alt="Descriptive Alt Text"
-            quality={50}
-            fill
-            className="absolute inset-0 object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            priority={true}
-          />
-        </div>
-
-        {/* 4 */}
-        <div
-          className={cn(
-            "col-span-6 row-span-8 md:col-span-2 md:row-span-5 lg:col-span-4 lg:row-span-8 lg:col-start-9 lg:row-start-4",
-            boxStyle
-          )}
-        >
-          <Image
-            src="/AFRICA/AFRICA-68.jpg"
-            alt="Descriptive Alt Text"
-            quality={50}
-            fill
-            className="absolute inset-0 object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            priority={true}
-          />
-        </div>
-
-        {/* 5 */}
-        <div
-          className={cn(
-            boxStyle,
-            "col-span-6 row-span-1 md:col-span-6 lg:col-span-12 lg:col-start-1 items-start pl-4 pr-2 text-2xl shadow-none"
-          )}
-        >
-          <div className="flex w-full justify-between items-center">
-            <span>Kian Malakooti</span>
-            <div className="flex gap-2">
-              {SOCIALS.slice(0, 2)
-                .reverse()
-                .map((social, index) => (
-                  <Link href={social.href} key={index} className="p-2">
-                    <social.icon />
-                  </Link>
-                ))}
-            </div>
-          </div>
-        </div>
-
-        {/* 6 */}
-        <div
-          className={cn(
-            boxStyle,
-            "hidden lg:block md:col-span-4 md:row-span-5 lg:col-span-3 lg:row-span-5 lg:row-start-7 lg:col-start-6"
-          )}
-        >
-          <Image
-            src="/AFRICA/AFRICA-10.jpg"
-            alt="Descriptive Alt Text"
-            quality={50}
-            fill
-            className="absolute inset-0 object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            priority={true}
-          />
-        </div>
-      </div>
-    </div>
+          <span>Selected work, 2019 — 2025</span>
+          <a href="#work" className="flex items-center gap-2 group">
+            Scroll
+            <span className="inline-block h-[1px] w-10 bg-bone/60 group-hover:w-16 transition-all duration-500" />
+          </a>
+        </m.div>
+      </m.div>
+    </section>
   );
 }

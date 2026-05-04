@@ -1,40 +1,38 @@
-"use client";
+import HomeClient from "@/components/HomeClient";
+import { albums, findPhoto } from "@/lib/albums";
+import type { Photo } from "@/lib/albums";
 
-import React, { useEffect, useState } from "react";
-import { ReactLenis } from "lenis/react";
-import GallerySwitch from "@/components/GallerySwitch";
-import ZoomParallax from "@/components/ZoomParallax";
-import Footer from "@/components/Footer";
-import Preloader from "@/components/Preloader";
-import { AnimatePresence } from "framer-motion";
+// Curated hero pool — strongest landscape-oriented frames.
+// Daily rotation gives returning visitors something new without being jumpy.
+const HERO_POOL: Array<{ albumId: string; src: string }> = [
+  { albumId: "africa", src: "/AFRICA/AFRICA-13.jpg" },
+  { albumId: "africa", src: "/AFRICA/AFRICA-3.jpg" },
+  { albumId: "africa", src: "/AFRICA/AFRICA-18.jpg" },
+  { albumId: "africa", src: "/AFRICA/AFRICA-50.jpg" },
+  { albumId: "africa", src: "/AFRICA/AFRICA-68.jpg" },
+  { albumId: "las-vegas", src: "/VEGAS/VEGAS-13.jpg" },
+  { albumId: "commercial", src: "/GIGS/CROOK-12.jpg" },
+];
 
-const Home: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(true);
+function dayIndex(): number {
+  // Days since UTC epoch — same on every render within the same day
+  return Math.floor(Date.now() / (1000 * 60 * 60 * 24));
+}
 
-  useEffect(() => {
-    (async () => {
-      setTimeout(() => {
-        setIsLoading(false);
-        document.body.style.cursor = "default";
-        window.scrollTo(0, 0);
-      }, 2000);
-    })();
-  }, []);
-
-  return (
-    <ReactLenis root>
-      <AnimatePresence mode="wait">
-        {isLoading && <Preloader />}
-      </AnimatePresence>
-      {!isLoading && (
-        <div className="flex flex-col">
-          <ZoomParallax />
-          <GallerySwitch />
-          <Footer />
-        </div>
-      )}
-    </ReactLenis>
+function pickHero(): Photo {
+  const candidates = HERO_POOL.map((c) => findPhoto(c.albumId, c.src)).filter(
+    (p): p is Photo => Boolean(p)
   );
-};
+  if (candidates.length === 0) return albums[0].photos[0];
+  return candidates[dayIndex() % candidates.length];
+}
 
-export default Home;
+// re-render daily (otherwise SSG locks the hero on the day of build)
+export const revalidate = 60 * 60 * 24;
+
+export default function Home() {
+  const hero = pickHero();
+  // Only prime the LCP element. Album covers are below the fold and lazy-load.
+  const prime = [hero.src];
+  return <HomeClient albums={albums} hero={hero} prime={prime} />;
+}

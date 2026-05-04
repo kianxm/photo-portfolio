@@ -1,23 +1,34 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import "./globals.css";
+import MotionProvider from "@/components/MotionProvider";
 
 const unlock = localFont({
   src: "./fonts/Unlock.ttf",
-  variable: "--font-unlock",
+  variable: "--font-display",
   weight: "400",
+  display: "optional",
+  adjustFontFallback: "Times New Roman",
+  preload: true,
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "optional",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://shotbykian.com"),
   title: {
     default: "shotbykian",
-    template: `%s | ${"shotbykian"}`,
+    template: `%s | shotbykian`,
   },
-  description: "Portfolio by Kian Malakooti",
+  description: "Photography by Kian Malakooti",
   openGraph: {
     title: "shotbykian",
-    description: "Portfolio by Kian Malakooti",
+    description: "Photography by Kian Malakooti",
     url: "https://shotbykian.com",
     siteName: "shotbykian",
     locale: "en_US",
@@ -42,9 +53,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${unlock.variable} antialiased bg-gray-200`}>
-        {children}
+    <html lang="en" className="dark">
+      <body
+        className={`${unlock.variable} ${inter.variable} font-sans antialiased bg-ink text-bone`}
+      >
+        <MotionProvider>{children}</MotionProvider>
       </body>
     </html>
   );
