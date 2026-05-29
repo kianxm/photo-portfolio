@@ -11,7 +11,7 @@ const HERO_POOL: Array<{ albumId: string; src: string }> = [
   { albumId: "africa", src: "/AFRICA/AFRICA-50.jpg" },
   { albumId: "africa", src: "/AFRICA/AFRICA-69.jpg" },
   { albumId: "las-vegas", src: "/VEGAS/VEGAS-13.jpg" },
-  { albumId: "commercial", src: "/GIGS/CROOK-12.jpg" },
+  { albumId: "roadtrip", src: "/OREGON/OREGON-27.jpg" },
 ];
 
 function dayIndex(): number {

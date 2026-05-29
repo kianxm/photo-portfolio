@@ -13,6 +13,7 @@ const OUT_FILE = join(OUT_DIR, "album-images.json");
 const ALBUMS = [
   { id: "africa", dir: "AFRICA" },
   { id: "las-vegas", dir: "VEGAS" },
+  { id: "roadtrip", dir: "OREGON" },
   { id: "graduation", dir: "GRAD" },
   { id: "commercial", dir: "GIGS" },
   { id: "concerts", dir: "TYO" },

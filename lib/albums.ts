@@ -43,6 +43,13 @@ const META: Record<string, Omit<Album, "photos">> = {
     year: "2024",
     cover: "/VEGAS/VEGAS-4.jpg",
   },
+  roadtrip: {
+    id: "roadtrip",
+    name: "Road Trip",
+    blurb: "Northern California up to Oregon — friends, the open road, and everything between.",
+    year: "2025",
+    cover: "/OREGON/OREGON-24.jpg",
+  },
   graduation: {
     id: "graduation",
     name: "Graduation",
