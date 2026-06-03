@@ -30,9 +30,71 @@ function pickHero(): Photo {
 // re-render daily (otherwise SSG locks the hero on the day of build)
 export const revalidate = 60 * 60 * 24;
 
+const BASE = "https://shotbykian.com";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${BASE}/#website`,
+      url: BASE,
+      name: "shotbykian",
+      description: "Photography by Kian Malakooti",
+      inLanguage: "en-US",
+      publisher: { "@id": `${BASE}/#person` },
+    },
+    {
+      "@type": ["Person", "ProfessionalService"],
+      "@id": `${BASE}/#person`,
+      name: "Kian Malakooti",
+      alternateName: "shotbykian",
+      url: BASE,
+      image: `${BASE}/me.jpg`,
+      jobTitle: "Photographer",
+      description:
+        "Documentary, travel, and commercial photographer working between places and people.",
+      knowsAbout: [
+        "Documentary photography",
+        "Travel photography",
+        "Commercial photography",
+        "Portrait photography",
+        "Concert photography",
+      ],
+      sameAs: [
+        "https://www.instagram.com/shotbykian",
+        "https://www.linkedin.com/in/kianmalakooti",
+      ],
+    },
+    {
+      "@type": "CollectionPage",
+      "@id": `${BASE}/#work`,
+      url: BASE,
+      name: "Selected albums",
+      isPartOf: { "@id": `${BASE}/#website` },
+      about: { "@id": `${BASE}/#person` },
+      hasPart: albums.map((a) => ({
+        "@type": "ImageGallery",
+        "@id": `${BASE}/album/${a.id}`,
+        url: `${BASE}/album/${a.id}`,
+        name: a.name,
+        description: a.blurb,
+      })),
+    },
+  ],
+};
+
 export default function Home() {
   const hero = pickHero();
   // Only prime the LCP element. Album covers are below the fold and lazy-load.
   const prime = [hero.src];
-  return <HomeClient albums={albums} hero={hero} prime={prime} />;
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <HomeClient albums={albums} hero={hero} prime={prime} />
+    </>
+  );
 }

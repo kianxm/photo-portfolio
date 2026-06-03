@@ -47,7 +47,7 @@ export default function About() {
           <div className="mt-2 grid grid-cols-2 gap-6 max-w-md">
             <Stat value="140+" label="Photographs" />
             <Stat value="32" label="Countries" />
-            <Stat value="3" label="Continents" />
+            <Stat value="5" label="Continents" />
             <Stat value="2019" label="Started" />
           </div>
         </div>

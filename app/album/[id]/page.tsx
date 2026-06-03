@@ -11,12 +11,28 @@ export function generateStaticParams() {
   return albums.map((a) => ({ id: a.id }));
 }
 
+const BASE = "https://shotbykian.com";
+
 export function generateMetadata({ params }: Params): Metadata {
   const album = getAlbum(params.id);
   if (!album) return { title: "Album not found" };
+  const description = `${album.blurb} — ${album.photos.length} photographs by Kian Malakooti, ${album.year}.`;
+  const url = `/album/${album.id}`;
   return {
     title: album.name,
-    description: album.blurb,
+    description,
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${album.name} | shotbykian`,
+      description,
+      url,
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${album.name} | shotbykian`,
+      description,
+    },
   };
 }
 
@@ -27,8 +43,40 @@ export default function AlbumPage({ params }: Params) {
   const idx = albums.findIndex((a) => a.id === album.id);
   const next = albums[(idx + 1) % albums.length];
 
+  const albumUrl = `${BASE}/album/${album.id}`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ImageGallery",
+        "@id": albumUrl,
+        url: albumUrl,
+        name: album.name,
+        description: album.blurb,
+        dateCreated: album.year,
+        author: {
+          "@type": "Person",
+          name: "Kian Malakooti",
+          url: BASE,
+        },
+        image: album.photos.slice(0, 12).map((p) => `${BASE}${p.src}`),
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Work", item: `${BASE}/#work` },
+          { "@type": "ListItem", position: 2, name: album.name, item: albumUrl },
+        ],
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-ink">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <header className="px-6 md:px-10 pt-8 md:pt-10 pb-12 md:pb-20">
         <div className="mx-auto max-w-7xl">
           <TransitionLink
@@ -67,7 +115,7 @@ export default function AlbumPage({ params }: Params) {
 
       <div className="px-3 md:px-6 pb-24">
         <div className="mx-auto max-w-[1600px]">
-          <PhotoGrid photos={album.photos} />
+          <PhotoGrid photos={album.photos} albumName={album.name} />
         </div>
       </div>
 

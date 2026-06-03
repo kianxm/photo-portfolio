@@ -42,7 +42,7 @@ function AlbumRow({ album, index }: { album: Album; index: number }) {
     <li className="group relative">
       <TransitionLink
         href={`/album/${album.id}`}
-        className="grid grid-cols-12 items-center gap-6 py-6 md:py-8 transition-colors duration-500"
+        className="grid grid-cols-12 items-center gap-6 py-4 md:py-5 transition-colors duration-500"
       >
         <span className="col-span-2 md:col-span-1 text-xs tabular-nums text-muted">
           0{index + 1}
@@ -50,7 +50,7 @@ function AlbumRow({ album, index }: { album: Album; index: number }) {
 
         <div className="col-span-7 md:col-span-5 flex flex-col gap-1">
           <span
-            className="font-display text-3xl md:text-5xl leading-none transition-transform duration-500 group-hover:translate-x-2"
+            className="font-display text-2xl md:text-4xl leading-none transition-transform duration-500 group-hover:translate-x-2"
             style={{ viewTransitionName: `album-title-${album.id}` }}
           >
             {album.name}

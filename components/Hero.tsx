@@ -28,7 +28,7 @@ export default function Hero({ hero }: Props) {
       <m.div style={{ y, scale }} className="absolute inset-0">
         <Image
           src={hero.src}
-          alt="featured photograph"
+          alt="Featured photograph by Kian Malakooti"
           fill
           priority
           quality={85}
@@ -44,11 +44,15 @@ export default function Hero({ hero }: Props) {
         style={{ opacity }}
         className="relative z-10 flex h-full flex-col justify-between px-6 py-8 md:px-10 md:py-10"
       >
-        <header className="flex items-center justify-between text-xs uppercase tracking-[0.25em] text-bone/70">
+        <header className="flex items-center justify-between text-xs uppercase tracking-[0.25em] text-bone/90 font-extrabold">
           <span>shotbykian</span>
           <nav className="flex gap-4 md:gap-6">
-            <a href="#work" className="underline-reveal">Work</a>
-            <a href="#about" className="underline-reveal">About</a>
+            <a href="#work" className="underline-reveal">
+              Work
+            </a>
+            <a href="#about" className="underline-reveal">
+              About
+            </a>
             <a
               href="https://www.instagram.com/shotbykian"
               target="_blank"
@@ -64,7 +68,11 @@ export default function Hero({ hero }: Props) {
           <m.h1
             initial={{ y: 60, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+            transition={{
+              duration: 1.1,
+              ease: [0.22, 1, 0.36, 1],
+              delay: 0.15,
+            }}
             className="font-display text-[clamp(3rem,11vw,11rem)] leading-[0.88] tracking-tight"
           >
             Kian
@@ -89,7 +97,7 @@ export default function Hero({ hero }: Props) {
           transition={{ duration: 1, delay: 0.9 }}
           className="flex items-center justify-between text-xs uppercase tracking-[0.25em] text-bone/60"
         >
-          <span>Selected work, 2019 — 2025</span>
+          <span>Selected work, 2019 — 2026</span>
           <a href="#work" className="flex items-center gap-2 group">
             Scroll
             <span className="inline-block h-[1px] w-10 bg-bone/60 group-hover:w-16 transition-all duration-500" />

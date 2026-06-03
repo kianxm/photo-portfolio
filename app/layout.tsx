@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -19,20 +19,52 @@ const inter = Inter({
   display: "optional",
 });
 
+const DESCRIPTION =
+  "Kian Malakooti is a documentary, travel, and commercial photographer. Selected work spanning Africa, Las Vegas, road trips, portraits, and live music.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://shotbykian.com"),
   title: {
-    default: "shotbykian",
+    default: "shotbykian — Kian Malakooti Photography",
     template: `%s | shotbykian`,
   },
-  description: "Photography by Kian Malakooti",
+  description: DESCRIPTION,
+  applicationName: "shotbykian",
+  authors: [{ name: "Kian Malakooti", url: "https://shotbykian.com" }],
+  creator: "Kian Malakooti",
+  publisher: "Kian Malakooti",
+  category: "photography",
+  keywords: [
+    "Kian Malakooti",
+    "shotbykian",
+    "photography",
+    "photographer",
+    "documentary photography",
+    "travel photography",
+    "commercial photography",
+    "portrait photography",
+    "concert photography",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  verification: {
+    google:
+      process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION ??
+      "rvQgj1CclLzInBp5kF-GazAiLvv_BOslxYXuDgmq8HA",
+  },
   openGraph: {
-    title: "shotbykian",
-    description: "Photography by Kian Malakooti",
+    title: "shotbykian — Kian Malakooti Photography",
+    description: DESCRIPTION,
     url: "https://shotbykian.com",
     siteName: "shotbykian",
     locale: "en_US",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "shotbykian — Kian Malakooti Photography",
+    description: DESCRIPTION,
   },
   robots: {
     index: true,
@@ -45,6 +77,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0a0a0a",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({

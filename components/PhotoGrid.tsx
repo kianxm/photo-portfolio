@@ -8,9 +8,9 @@ import type { Photo } from "@/lib/albums";
 
 const Lightbox = dynamic(() => import("./Lightbox"), { ssr: false });
 
-type Props = { photos: Photo[] };
+type Props = { photos: Photo[]; albumName?: string };
 
-export default function PhotoGrid({ photos }: Props) {
+export default function PhotoGrid({ photos, albumName }: Props) {
   const [active, setActive] = useState<number | null>(null);
   const tileRefs = useRef<Record<number, HTMLButtonElement | null>>({});
   const openerRef = useRef<HTMLButtonElement | null>(null);
@@ -28,6 +28,7 @@ export default function PhotoGrid({ photos }: Props) {
             key={p.src}
             photo={p}
             index={i}
+            albumName={albumName}
             onOpen={() => open(i)}
             registerRef={(el) => (tileRefs.current[i] = el)}
           />
@@ -50,15 +51,22 @@ export default function PhotoGrid({ photos }: Props) {
 function Tile({
   photo,
   index,
+  albumName,
   onOpen,
   registerRef,
 }: {
   photo: Photo;
   index: number;
+  albumName?: string;
   onOpen: () => void;
   registerRef: (el: HTMLButtonElement | null) => void;
 }) {
   const [loaded, setLoaded] = useState(false);
+  const altText =
+    photo.alt ??
+    (albumName
+      ? `${albumName} — photograph ${index + 1} by Kian Malakooti`
+      : `Photograph ${index + 1} by Kian Malakooti`);
 
   return (
     <motion.button
@@ -80,7 +88,7 @@ function Tile({
       {!loaded && <div className="absolute inset-0 skeleton" />}
       <Image
         src={photo.src}
-        alt={photo.alt ?? `photograph ${index + 1}`}
+        alt={altText}
         fill
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         placeholder="blur"

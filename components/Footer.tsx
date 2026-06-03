@@ -4,7 +4,6 @@ const links = [
   { label: "Instagram", href: "https://www.instagram.com/shotbykian" },
   { label: "Email", href: "mailto:kianjmalakooti@gmail.com" },
   { label: "LinkedIn", href: "https://www.linkedin.com/in/kianmalakooti" },
-  { label: "GitHub", href: "https://www.github.com/kianxm" },
 ];
 
 export default function Footer() {
