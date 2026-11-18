@@ -3,14 +3,9 @@ import { SITE_URL } from "@/lib/site";
 import { albums, getAlbum } from "@/lib/albums";
 
 export const runtime = "nodejs";
-export const alt = "shotbykian album";
+export const alt = "Album by Kian Malakooti — shotbykian";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-
-export function generateImageMetadata({ params }: { params: { id: string } }) {
-  const album = getAlbum(params.id);
-  return [{ id: "default", contentType, size, alt: album?.name ?? alt }];
-}
 
 export function generateStaticParams() {
   return albums.map((a) => ({ id: a.id }));
@@ -90,7 +85,7 @@ export default async function Image({ params }: { params: { id: string } }) {
                 opacity: 0.6,
               }}
             >
-              Album · {album.year}
+              {`Album · ${album.year}`}
             </div>
             <div
               style={{
