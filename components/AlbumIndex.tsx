@@ -20,8 +20,8 @@ export default function AlbumIndex({ albums }: Props) {
             Selected <span className="italic text-muted">albums</span>
           </h2>
           <p className="max-w-xl text-bone/60 text-pretty mt-2">
-            Five collections spanning travel, live music, portrait, and
-            commercial work. Click an album to view the full set.
+            {albums.length} collections spanning travel, live music, portrait,
+            and commercial photography. Click an album to view the full set.
           </p>
         </header>
 

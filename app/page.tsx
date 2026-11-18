@@ -1,4 +1,5 @@
 import HomeClient from "@/components/HomeClient";
+import { SITE_URL } from "@/lib/site";
 import { albums, findPhoto } from "@/lib/albums";
 import type { Photo } from "@/lib/albums";
 
@@ -30,7 +31,7 @@ function pickHero(): Photo {
 // re-render daily (otherwise SSG locks the hero on the day of build)
 export const revalidate = 60 * 60 * 24;
 
-const BASE = "https://shotbykian.com";
+const BASE = SITE_URL;
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -38,14 +39,14 @@ const jsonLd = {
     {
       "@type": "WebSite",
       "@id": `${BASE}/#website`,
-      url: BASE,
+      url: `${BASE}/`,
       name: "shotbykian",
       description: "Photography by Kian Malakooti",
       inLanguage: "en-US",
       publisher: { "@id": `${BASE}/#person` },
     },
     {
-      "@type": ["Person", "ProfessionalService"],
+      "@type": "Person",
       "@id": `${BASE}/#person`,
       name: "Kian Malakooti",
       alternateName: "shotbykian",
@@ -53,7 +54,17 @@ const jsonLd = {
       image: `${BASE}/me.jpg`,
       jobTitle: "Photographer",
       description:
-        "Documentary, travel, and commercial photographer working between places and people.",
+        "San Francisco photographer specializing in travel, documentary, portrait, concert, and commercial photography.",
+      homeLocation: {
+        "@type": "Place",
+        name: "San Francisco, CA",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "San Francisco",
+          addressRegion: "CA",
+          addressCountry: "US",
+        },
+      },
       knowsAbout: [
         "Documentary photography",
         "Travel photography",
@@ -77,8 +88,8 @@ const jsonLd = {
         "@type": "ImageGallery",
         "@id": `${BASE}/album/${a.id}`,
         url: `${BASE}/album/${a.id}`,
-        name: a.name,
-        description: a.blurb,
+        name: a.seoTitle,
+        description: a.seoDescription,
       })),
     },
   ],

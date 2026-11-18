@@ -25,6 +25,10 @@ export type Album = {
   blurb: string;
   year: string;
   cover: string;
+  /** <title> text for search results — more descriptive than `name`. */
+  seoTitle: string;
+  /** Meta description, ~150 chars. */
+  seoDescription: string;
   photos: Photo[];
 };
 
@@ -35,6 +39,9 @@ const META: Record<string, Omit<Album, "photos">> = {
     blurb: "Two trips, five years apart — landscapes, people, and the in-between.",
     year: "2019 / 2024",
     cover: "/AFRICA/AFRICA-3.jpg",
+    seoTitle: "Africa — Travel & Documentary Photography",
+    seoDescription:
+      "Travel and documentary photographs from East Africa by Kian Malakooti: landscapes, people, and the in-between from two trips five years apart (2019 and 2024).",
   },
   "las-vegas": {
     id: "las-vegas",
@@ -42,6 +49,9 @@ const META: Record<string, Omit<Album, "photos">> = {
     blurb: "Neon, glass, and the desert at the edges of the strip.",
     year: "2024",
     cover: "/VEGAS/VEGAS-4.jpg",
+    seoTitle: "Las Vegas Photography — Neon, Glass & Desert",
+    seoDescription:
+      "Las Vegas photographed by Kian Malakooti: neon, glass, and the desert at the edges of the Strip.",
   },
   roadtrip: {
     id: "roadtrip",
@@ -49,6 +59,9 @@ const META: Record<string, Omit<Album, "photos">> = {
     blurb: "Northern California up to Oregon — friends, the open road, and everything between.",
     year: "2025",
     cover: "/OREGON/OREGON-24.jpg",
+    seoTitle: "Road Trip — Northern California to Oregon Photography",
+    seoDescription:
+      "A road trip from Northern California up to Oregon, photographed by Kian Malakooti: friends, the open road, and everything between.",
   },
   graduation: {
     id: "graduation",
@@ -56,6 +69,9 @@ const META: Record<string, Omit<Album, "photos">> = {
     blurb: "Caps, gowns, and the people behind them.",
     year: "2024",
     cover: "/GRAD/GRAD-19.jpg",
+    seoTitle: "Graduation Portrait Photography",
+    seoDescription:
+      "Graduation portraits by Kian Malakooti: caps, gowns, and the people behind them.",
   },
   commercial: {
     id: "commercial",
@@ -63,6 +79,9 @@ const META: Record<string, Omit<Album, "photos">> = {
     blurb: "Brand and product work for clients.",
     year: "2023 — 2025",
     cover: "/GIGS/CROOK-12.jpg",
+    seoTitle: "Commercial, Brand & Product Photography",
+    seoDescription:
+      "Commercial photography by Kian Malakooti: brand and product work for clients, 2023–2025.",
   },
   concerts: {
     id: "concerts",
@@ -70,6 +89,9 @@ const META: Record<string, Omit<Album, "photos">> = {
     blurb: "Live shows, stage light, and the crowd.",
     year: "2024",
     cover: "/TYO/TYO-1.jpg",
+    seoTitle: "Concert & Live Music Photography",
+    seoDescription:
+      "Concert photography by Kian Malakooti: live shows, stage lighting, performers, and the crowd.",
   },
 };
 

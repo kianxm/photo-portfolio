@@ -4,33 +4,43 @@ import Footer from "@/components/Footer";
 import TransitionLink from "@/components/TransitionLink";
 import { albums, getAlbum } from "@/lib/albums";
 import type { Metadata } from "next";
+import { AUTHOR, SITE_NAME, SITE_URL } from "@/lib/site";
 
 type Params = { params: { id: string } };
+
+// Only the known albums exist; anything else is a real 404.
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return albums.map((a) => ({ id: a.id }));
 }
 
-const BASE = "https://shotbykian.com";
+const BASE = SITE_URL;
+
+/** "2019 / 2024" → "2019", "2023 — 2025" → "2023" (schema.org wants ISO dates). */
+const firstYear = (y: string) => y.match(/\d{4}/)?.[0];
 
 export function generateMetadata({ params }: Params): Metadata {
   const album = getAlbum(params.id);
-  if (!album) return { title: "Album not found" };
-  const description = `${album.blurb} — ${album.photos.length} photographs by Kian Malakooti, ${album.year}.`;
+  if (!album) return { title: "Album not found", robots: { index: false } };
+  const description = album.seoDescription;
   const url = `/album/${album.id}`;
+  const title = `${album.seoTitle} | ${SITE_NAME}`;
   return {
-    title: album.name,
+    title: album.seoTitle,
     description,
     alternates: { canonical: url },
     openGraph: {
-      title: `${album.name} | shotbykian`,
+      title,
       description,
       url,
-      type: "article",
+      siteName: SITE_NAME,
+      locale: "en_US",
+      type: "website",
     },
     twitter: {
       card: "summary_large_image",
-      title: `${album.name} | shotbykian`,
+      title,
       description,
     },
   };
@@ -44,6 +54,8 @@ export default function AlbumPage({ params }: Params) {
   const next = albums[(idx + 1) % albums.length];
 
   const albumUrl = `${BASE}/album/${album.id}`;
+  const author = { "@type": "Person", "@id": `${BASE}/#person`, name: AUTHOR, url: BASE };
+  const year = firstYear(album.year);
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -52,19 +64,28 @@ export default function AlbumPage({ params }: Params) {
         "@id": albumUrl,
         url: albumUrl,
         name: album.name,
-        description: album.blurb,
-        dateCreated: album.year,
-        author: {
-          "@type": "Person",
-          name: "Kian Malakooti",
-          url: BASE,
-        },
-        image: album.photos.slice(0, 12).map((p) => `${BASE}${p.src}`),
+        headline: album.seoTitle,
+        description: album.seoDescription,
+        ...(year ? { dateCreated: year } : {}),
+        inLanguage: "en-US",
+        isPartOf: { "@id": `${BASE}/#website` },
+        author,
+        primaryImageOfPage: `${BASE}${album.cover}`,
+        image: album.photos.map((p, i) => ({
+          "@type": "ImageObject",
+          contentUrl: `${BASE}${p.src}`,
+          width: p.width,
+          height: p.height,
+          caption: `${album.name} — photograph ${i + 1} by ${AUTHOR}`,
+          creator: author,
+          creditText: AUTHOR,
+          copyrightNotice: `© ${AUTHOR}`,
+        })),
       },
       {
         "@type": "BreadcrumbList",
         itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Work", item: `${BASE}/#work` },
+          { "@type": "ListItem", position: 1, name: "Home", item: `${BASE}/` },
           { "@type": "ListItem", position: 2, name: album.name, item: albumUrl },
         ],
       },

@@ -1,11 +1,12 @@
 import { ImageResponse } from "next/og";
+import { SITE_URL } from "@/lib/site";
 
 export const runtime = "nodejs";
 export const alt = "shotbykian — photographs by Kian Malakooti";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const BASE = "https://shotbykian.com";
+const BASE = SITE_URL;
 
 export default async function Image() {
   return new ImageResponse(

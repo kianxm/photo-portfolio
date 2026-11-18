@@ -97,7 +97,7 @@ export default function Hero({ hero }: Props) {
           transition={{ duration: 1, delay: 0.9 }}
           className="flex items-center justify-between text-xs uppercase tracking-[0.25em] text-bone/60"
         >
-          <span>Selected work, 2019 — 2026</span>
+          <span>San Francisco · Selected work, 2019 — 2026</span>
           <a href="#work" className="flex items-center gap-2 group">
             Scroll
             <span className="inline-block h-[1px] w-10 bg-bone/60 group-hover:w-16 transition-all duration-500" />

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { SITE_URL } from "@/lib/site";
 import MotionProvider from "@/components/MotionProvider";
 
 const unlock = localFont({
@@ -19,18 +20,19 @@ const inter = Inter({
   display: "optional",
 });
 
+const TITLE = "Kian Malakooti — San Francisco Photographer";
 const DESCRIPTION =
-  "Kian Malakooti is a documentary, travel, and commercial photographer. Selected work spanning Africa, Las Vegas, road trips, portraits, and live music.";
+  "San Francisco photographer specializing in travel, documentary, portrait, concert, and commercial photography.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://shotbykian.com"),
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: "shotbykian — Kian Malakooti Photography",
+    default: TITLE,
     template: `%s | shotbykian`,
   },
   description: DESCRIPTION,
   applicationName: "shotbykian",
-  authors: [{ name: "Kian Malakooti", url: "https://shotbykian.com" }],
+  authors: [{ name: "Kian Malakooti", url: SITE_URL }],
   creator: "Kian Malakooti",
   publisher: "Kian Malakooti",
   category: "photography",
@@ -39,6 +41,8 @@ export const metadata: Metadata = {
     "shotbykian",
     "photography",
     "photographer",
+    "San Francisco photographer",
+    "Bay Area photographer",
     "documentary photography",
     "travel photography",
     "commercial photography",
@@ -54,16 +58,16 @@ export const metadata: Metadata = {
       "rvQgj1CclLzInBp5kF-GazAiLvv_BOslxYXuDgmq8HA",
   },
   openGraph: {
-    title: "shotbykian — Kian Malakooti Photography",
+    title: TITLE,
     description: DESCRIPTION,
-    url: "https://shotbykian.com",
+    url: SITE_URL,
     siteName: "shotbykian",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "shotbykian — Kian Malakooti Photography",
+    title: TITLE,
     description: DESCRIPTION,
   },
   robots: {

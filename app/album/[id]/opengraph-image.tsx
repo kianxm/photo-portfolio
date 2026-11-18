@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { SITE_URL } from "@/lib/site";
 import { albums, getAlbum } from "@/lib/albums";
 
 export const runtime = "nodejs";
@@ -15,7 +16,7 @@ export function generateStaticParams() {
   return albums.map((a) => ({ id: a.id }));
 }
 
-const BASE = "https://shotbykian.com";
+const BASE = SITE_URL;
 
 export default async function Image({ params }: { params: { id: string } }) {
   const album = getAlbum(params.id);

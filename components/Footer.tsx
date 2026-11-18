@@ -33,6 +33,7 @@ export default function Footer() {
                 <Link
                   href={l.href}
                   target={l.href.startsWith("http") ? "_blank" : undefined}
+                  rel={l.href.startsWith("http") ? "me noopener" : undefined}
                   className="underline-reveal"
                 >
                   {l.label}
